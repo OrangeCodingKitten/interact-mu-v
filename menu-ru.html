@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Меню</title>
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/menu.css">
+
+    <script src="https://kit.fontawesome.com/0dfb09cd7e.js" crossorigin="anonymous" defer></script>
+
+    <script src="./js/main.js" defer type="module"></script>
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <div class="nav__elements">
+                <div class="nav__links">
+                    <a href="#">EN</a>
+                </div>
+
+                <div class="nav__buttons">
+                    <button class="basket-btn">
+                        <span class="basket-btn-quantity">0</span>
+                        <i class="fa-solid fa-basket-shopping"></i>
+                    </button>
+                    <button class="basket-clouse-btn">
+                        <i class="fa-solid fa-reply"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="basket-box">
+        <button class="btn-your-order"></button>
+        <h2>Корзина:</h2>
+        <div class="basket-cost">
+            <p>Стоимость блюд в корзине:</p>
+            <span class="basket-cost-span">0₽</span>
+        </div>
+        <div class="basket-list-div"></div>
+        <button id="btnSendOrder" class="basket-box__btn-order">Отправить заказ</button>
+    </div>
+
+    <div id="categoriesList" class="categories-list"></div>
+
+    <div id="menuCardList" class="card-list"></div>
+
+
+
+    <div class="wrapper">
+        <!-- <div class="dialog-box">
+            <p>Пожалуйста введите номер стола</p>
+            <input id="tableNumberInput" type="number" placeholder="№">
+            <div class="dialog-box__buttons">
+                <button class="dialog-box__ok">Ок</button>
+                <button class="dialog-box__cansel">Отмена</button>
+            </div>
+        </div> -->
+    </div>
+
+
+
+    <footer>
+        <a href="https://maps.app.goo.gl/maiAbeZuX46aa3t7A">
+            <i class="fa-solid fa-message"></i> Оставить отзыв
+        </a>
+    </footer>
+
+    <div class="div-your-order">
+        <button class="your-order-btn-close">x</button>
+        <h2>Ваш заказ:</h2>
+
+        <div class="your-order-cost">Стоимость всех блюд: 10$</div>
+
+        <div class="your-order-cards-list">
+            <div class="order-card">
+                <div class="order-head">
+                    <img class="order-card__photo" src="./img/Group 1-min.jpg" alt="">
+                    <div class="order-card__manager">
+                        <span class="order-amaunt-span">2</span>
+                        <span class="order-card__total-cost">200₽</span>
+                    </div>
+                </div>
+                <div class="order-card__info">
+                    <h2>Каппучино</h2>
+                    <h3>Cappucino</h3>
+                    <p><span>350 ml</span>-<span>100₽</span></p>
+                    <span class="order-time">14:45</span>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn-pay">Оплатить</button>
+    </div>
+</body>
+
+</html>
