@@ -1,3 +1,16 @@
+import { words } from "./words.js";
+import { applyLocale } from "./i18n.js";
+
+const USER_LANG = document.documentElement.lang; // например "ru" или "en-US"
+
+document.addEventListener("DOMContentLoaded", () => {
+  applyLocale(words, USER_LANG);
+});
+
+
+console.log(words);
+
+
 import { getDataStore } from './getDataStore.js'
 
 let BASKET_DATA_STORE = [];
@@ -5,7 +18,6 @@ let BASKET_DATA_STORE = [];
 let ORDER_DATA_STORE = [];
 
 const MENU_DATA_STORE = [];
-const USER_LANG = document.documentElement.lang;
 const MAIN_LANG = 'ru';
 const currency = '₽';
 
@@ -426,10 +438,14 @@ function createDialogBox(type, text) {
                 <p>${text}</p>
                 <div class="dialog-box__buttons">
                     <button class="dialog-box__ok cash">Наличные</button>
-                    <button class="dialog-box__ok card">Карта</button>
+                    <button class="dialog-box__ok card btn-card">Карта</button>
                     <button class="dialog-box__cansel">Отмена</button>
                 </div>
             `
+
+            //<button class="dialog-box__ok card">Карта</button>//
+
+
             const dialogBoxCash = dialogBoxDiv.querySelector('.cash');
             const dialogBoxCard = dialogBoxDiv.querySelector('.card');
             const dialogBoxCansel = dialogBoxDiv.querySelector('.dialog-box__cansel');
