@@ -64,7 +64,7 @@ const btnPay = document.querySelector('.btn-pay');
 
 btnPay.addEventListener('click', () => {
     console.log('клик');
-    createDialogBox('reqestPaymentMethod', 'Выберите способ оплаты');
+    createDialogBox('reqestPaymentMethod', `${words[USER_LANG].selectPaymentMethodText}`);
 })
 
 let activeCategory;
@@ -381,7 +381,8 @@ btnSendOrder.addEventListener('click', () => {
         if (typeof tableNumber === 'number') {
             console.log('Номер стола - это число');
         } else {
-            createDialogBox('reqestTableNumber', 'Пожалуйста введите номер стола');
+            console.log(USER_LANG);
+            createDialogBox('reqestTableNumber', `${words[USER_LANG].pleaseNumTableText}`);
         }
     }
 })
@@ -397,7 +398,7 @@ function createDialogBox(type, text) {
                 <input class="table-number-input" type="number" placeholder="№">
                 <div class="dialog-box__buttons">
                     <button class="dialog-box__ok">Ок</button>
-                    <button class="dialog-box__cansel">Отмена</button>
+                    <button class="dialog-box__cansel">${words[USER_LANG].buttonCancel}</button>
                 </div>
             `
             const dialogBoxOk = dialogBoxDiv.querySelector('.dialog-box__ok');
@@ -417,7 +418,7 @@ function createDialogBox(type, text) {
 
                     console.log('Номер стола: ' + tableNumber);
                 } else {
-                    dialogBoxDiv.querySelector('p').innerText = 'Пожалуйста, введите ЦЕЛОЕ число';
+                    dialogBoxDiv.querySelector('p').innerText = `${words[USER_LANG].pleaseEnterAnIntegerNumberText}`;
                 }
             });
 
@@ -437,9 +438,9 @@ function createDialogBox(type, text) {
             dialogBoxDiv.innerHTML = `
                 <p>${text}</p>
                 <div class="dialog-box__buttons">
-                    <button class="dialog-box__ok cash">Наличные</button>
-                    <button class="dialog-box__ok card btn-card">Карта</button>
-                    <button class="dialog-box__cansel">Отмена</button>
+                    <button class="dialog-box__ok cash">${words[USER_LANG].cashText}</button>
+                    <button class="dialog-box__ok card btn-card">${words[USER_LANG].cardText}</button>
+                    <button class="dialog-box__cansel">${words[USER_LANG].buttonCancel}</button>
                 </div>
             `
 
@@ -836,7 +837,7 @@ function sendMessangeToTg(messageText, type, totalCost = 0) {
                         btnYourOrder.style.display = 'none';
                         createDialogBox(
                             'finalMessage',
-                            `Сейчас к вам подойдет офицант. Сумма к оплате: ${totalCost}${currency}. Не забудьте оставить отзыв.`
+                            `${words[USER_LANG].aWaiterWillApproachYouNowAmountToBePaidText1} ${totalCost}${currency}. ${words[USER_LANG].dontForgetToLeaveAReviewText2}`
                         );
 
                         tableNumber = '';
@@ -850,7 +851,7 @@ function sendMessangeToTg(messageText, type, totalCost = 0) {
                         });
                         ORDER_DATA_STORE.unshift(...BASKET_DATA_STORE);
                         BASKET_DATA_STORE = [];
-                        createDialogBox('info', 'Ваш заказ отправлен');
+                        createDialogBox('info', `${words[USER_LANG].yourOrderHasBeenSentText}`);
                     }
 
                     basketCardRender();
@@ -917,11 +918,11 @@ function orderRender() {
     });
 
     if (ORDER_DATA_STORE.length > 0) {
-        btnYourOrder.textContent = `Ваш заказ: ${orderNumberForHtml}`
+        btnYourOrder.textContent = `${words[USER_LANG].h2YourOrder} ${orderNumberForHtml}`
         btnYourOrder.style.display = 'block';
     }
 
-    yourOrderCost.textContent = `Стоимость всех блюд: ${orderTotalCost}${currency}`
+    yourOrderCost.textContent = `${words[USER_LANG].costOfAllDishesInTheOrderText} ${orderTotalCost}${currency}`
 }
 
 function nowTime() {
