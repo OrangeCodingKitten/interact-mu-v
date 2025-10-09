@@ -1,6 +1,7 @@
 import { words } from "./words.js";
 import { applyLocale } from "./i18n.js";
 
+
 const USER_LANG = document.documentElement.lang; // например "ru" или "en-US"
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -68,9 +69,19 @@ btnPay.addEventListener('click', () => {
 })
 
 let activeCategory;
-let tableNumber = '';
+let tableNumber = getTableNumberFromUrl ();
 let orderNumberForTg = '';
 let orderNumberForHtml = '';
+
+
+
+function getTableNumberFromUrl () {
+    const url = new URL(window.location.href);
+    const tableParam = url.searchParams.get("table");
+    return tableParam ? Number(tableParam) : '';
+}
+
+
 
 basketBtnOpen.addEventListener('click', () => {
     basketBtnOpen.classList.toggle('move-left');
@@ -380,6 +391,7 @@ btnSendOrder.addEventListener('click', () => {
     } else {
         if (typeof tableNumber === 'number') {
             console.log('Номер стола - это число');
+            createMessageToTg('newOrder');
         } else {
             console.log(USER_LANG);
             createDialogBox('reqestTableNumber', `${words[USER_LANG].pleaseNumTableText}`);
@@ -860,12 +872,12 @@ function sendMessangeToTg(messageText, type, totalCost = 0) {
 
                 } else {
                     console.error('Ошибка при отправке:', data);
-                    createDialogBox('info', 'Ошибка при отправке. Попробуйте ещё раз');
+                    createDialogBox('info', `${words[USER_LANG].errorSendingPleaseTryAgainText}`);
                 }
             })
             .catch(error => {
                 console.error('Ошибка запроса:', error);
-                createDialogBox('info', 'Отправка заказа временно недоступна. Пожалуйста, пригласите офицанта.');
+                createDialogBox('info', `${words[USER_LANG].orderDeliveryIsTemporarilyUnavailablePleaseInviteAWaiterText}`);
             });
     }, 500);
 }
