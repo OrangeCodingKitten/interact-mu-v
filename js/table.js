@@ -16,6 +16,6 @@
       // Добавляем параметр table в ссылку
       url.searchParams.set('table', tableNumber);
       // Обновляем href у ссылки
-      link.setAttribute('href', url.pathname + url.search);
+      link.setAttribute('href', `.` + url.pathname + url.search);
     });
   }
